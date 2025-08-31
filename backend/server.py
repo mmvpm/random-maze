@@ -352,7 +352,7 @@ class Game:
             await asyncio.sleep(1) # Brief pause before execution starts
 
             # Get a fixed order of players for this execution round
-            player_order = sorted(list(self.players.values()), key=lambda p: p.name)
+            player_order = sorted(list(self.players.values()), key=lambda p: p.name.lower())
             game_over = False
 
             for i in range(self.command_limit):

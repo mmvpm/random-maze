@@ -175,7 +175,13 @@ document.addEventListener('DOMContentLoaded', () => {
             paths[p.id] = [{x: p.x, y: p.y}];
         }
         
-        const sortedPlayers = Object.values(simulatedPlayers).sort((a, b) => a.name.localeCompare(b.name));
+        const sortedPlayers = Object.values(simulatedPlayers).sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+        });
         
         const isWall = (x, y) => {
             if (y < 0 || y >= gameState.maze.length || x < 0 || x >= gameState.maze[0].length) {
@@ -312,7 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         let listHtml = '';
-        const sortedPlayers = Object.values(gameState.players).sort((a, b) => a.name.localeCompare(b.name));
+        const sortedPlayers = Object.values(gameState.players).sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+        });
 
         for (const player of sortedPlayers) {
             const isMe = player.id === myId;
@@ -360,7 +372,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Display all player command queues
-            const sortedPlayers = Object.values(gameState.players).sort((a, b) => a.name.localeCompare(b.name));
+            const sortedPlayers = Object.values(gameState.players).sort((a, b) => {
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+            });
             for (const player of sortedPlayers) {
                 const isMe = player.id === myId;
                 html += `<div class="player-commands">
